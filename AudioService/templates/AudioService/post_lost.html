@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="general">
+        <a class="log-out" href="log-out/">log-out</a>
+        <form method="POST" action="global/">
+            {% csrf_token %}
+            <label>
+                <label>Enter Username</label>
+                <input required type="text" name="username" />
+            </label>
+            <input type="submit" value="Search">
+        </form>
+        <form method="POST" action="create/">
+            {% csrf_token %}
+            <p>
+                <label>Input name</label><br>
+                <label>
+                    <input required type="text" name="name" />
+                </label>
+            </p>
+            <p>
+                <label>Input type</label><br>
+                <label>
+                    <input required type="radio" name="type" value="private" />private
+                    <input required type="radio" name="type" value="public" />public
+                </label>
+            </p>
+            <input type="submit" value="Save">
+        </form>
+
+
+        {% if audiolists.count > 0 %}
+        <h2>AudioLists</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>type</th>
+            </tr>
+            {% for audiolist in audiolists %}
+            <tr>
+                <td>{{ audiolist.name }}</td>
+                <td>{{ audiolist.type }}</td>
+                <td><a href="edit/{{audiolist.id}}">Edit</a> | <a href="delete/{{audiolist.id}}">Delete</a> | <a
+                        href="add-audio/{{audiolist.id}}">Add Song</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</body>
+
+</html>

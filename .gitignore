@@ -1,0 +1,5 @@
+/node_modules
+/AudioService/__pycache__
+/MyService/__pycache__
+/AudioService/migrations
+/venv

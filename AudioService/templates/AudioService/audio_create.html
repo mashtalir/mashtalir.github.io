@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Enter Name</label><br>
+            <label>
+                <input required type="text" name="name" value="{{audios.name}}" />
+            </label>
+        </p>
+        <p>
+            <label>Upload Audio File</label><br>
+            <label>
+                <input required type="file" name="file" value="{{audios.file}}"/>
+            </label>
+        </p>
+        <input type="submit" value="Save" >
+
+    </form>
+    {% if audios.count > 0 %}
+    <h2>AudioLists</h2>
+    <table>
+        <tr><th>Name</th><th>Song</th></tr>
+        {% for audio in audios %}
+        <tr>
+            <td>{{ audio.name }}</td>
+            <td>{{ audio.file }}</td>
+            <td>
+            <a target="_blank" href="{{ audio.file }}">
+                                            <button type="button" class="btn btn-success btn-xs">
+                                                <span class="glyphicon glyphicon-play"></span>&nbsp; Play
+                                            </button>
+                                        </a>
+            <td><a href="delete-audio/{{ audio.id }}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+</body>
+</html>

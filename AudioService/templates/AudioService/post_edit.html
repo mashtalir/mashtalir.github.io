@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Enter name</label><br>
+            <label>
+                <input type="text" name="name" value="{{audiolists.name}}" />
+            </label>
+        </p>
+        <p>
+            <label>Enter type</label><br>
+            <label>
+                {% if audiolists.type == 'private' %}
+                    <input checked type="radio" name="type" value="{{audiolists.type}}" />private
+                    <input  type="radio" name="type" value="public" />public
+                {% endif %}
+                {% if audiolists.type == 'public' %}
+                    <input type="radio" name="type" value="private" />private
+                    <input checked type="radio" name="type" value="{{audiolists.type}}" />public
+                {% endif %}
+            </label>
+        </p>
+        <input type="submit" value="Сохранить" >
+    </form>
+</body>
+</html>

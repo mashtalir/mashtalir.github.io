@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <body>
+    <form>
+        {% csrf_token %}
+    </form>
+        {% if audiolists.count > 0 %}
+        <h2>AudioLists</h2>
+        <table>
+            <tr><th>Name</th><th>Type</th></tr>
+            {% for audiolist in audiolists %}
+            <tr>
+                <td>{{ audiolist.name }}</td>
+                <td>{{ audiolist.type }}</td>
+                <td><a href="edit/{{audiolist.id}}">Add Song</a></td>
+            </tr>
+
+            {% endfor %}
+        </table>
+        {% endif %}
+    </body>
+</html>
